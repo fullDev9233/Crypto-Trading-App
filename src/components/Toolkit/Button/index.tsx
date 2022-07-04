@@ -14,6 +14,10 @@ const Button = styled.button`
   &:hover {
     box-shadow: ${({ theme }) => theme.shadows.shadow02};
   }
+
+  &:disabled {
+    cursor: not-allowed;
+  }
 `;
 
 export default Button;
