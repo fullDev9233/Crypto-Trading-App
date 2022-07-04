@@ -1,5 +1,10 @@
 import { InputHTMLAttributes } from 'react';
 
+export interface InputCallbackProps {
+  name: string;
+  value: string;
+}
+
 export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   id?: string;
   label?: string;
@@ -9,18 +14,10 @@ export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   hint?: string;
   isError?: boolean;
   error?: string;
-  cbHandler?: (data: { name: string; value: string }) => void;
+  cbHandler?: (data: InputCallbackProps) => void;
   width?: number;
   height?: number;
   bg?: string;
   radius?: number;
   isIcon?: boolean;
-}
-
-export interface InputWithIconProps extends InputProps {
-  name: string;
-  value: string;
-  placeholder: string;
-  icon: string;
-  cbHandler: (data: { name: string; value: string }) => void;
 }

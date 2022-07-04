@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { RootState } from './store';
 import authAPI from '../apis/authAPI';
 
@@ -25,17 +25,7 @@ export const authAsync = createAsyncThunk('auth/login', async (userInfo: AuthPro
 export const authSlice = createSlice({
   name: 'auth',
   initialState,
-  reducers: {
-    addUserCreds: (state, action: PayloadAction<AuthProps>) => {
-      state.user = action.payload;
-    },
-    removeUserCreds: (state) => {
-      state.user = {
-        email: '',
-        password: '',
-      };
-    },
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(authAsync.pending, (state) => {
@@ -43,7 +33,9 @@ export const authSlice = createSlice({
       })
       .addCase(authAsync.fulfilled, (state, action) => {
         state.status = 'idle';
-        state.isLoggenIn = action.payload;
+        state.isLoggenIn = action.payload.isLoggedIn;
+        state.user.email = action.payload.email;
+        state.user.password = action.payload.password;
       })
       .addCase(authAsync.rejected, (state) => {
         state.status = 'failed';
@@ -51,8 +43,7 @@ export const authSlice = createSlice({
   },
 });
 
-export const { addUserCreds, removeUserCreds } = authSlice.actions;
-
 export const selectIsLoggedIn = (state: RootState) => state.auth.isLoggenIn;
+export const selectUserCreds = (state: RootState) => state.auth.user;
 
 export default authSlice.reducer;
