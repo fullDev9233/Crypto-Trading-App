@@ -1,13 +1,12 @@
 import { DefaultTheme } from 'styled-components';
 import base from './base';
+import colors from './colors';
+import shadows from './shadows';
 
-const antTheme: DefaultTheme = {
+const theme: DefaultTheme = {
   ...base,
-  colors: {
-    primary: '#0F370A',
-    secondary: 'magenta',
-    primaryText: '#FFFBD8',
-  },
+  colors,
+  shadows,
 };
 
-export default antTheme;
+export default theme;

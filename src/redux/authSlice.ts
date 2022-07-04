@@ -1,15 +1,20 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from './store';
 import authAPI from '../apis/authAPI';
 
 export interface AuthState {
   isLoggenIn: boolean;
   status: 'idle' | 'loading' | 'failed';
+  user: AuthProps;
 }
 
 const initialState: AuthState = {
   isLoggenIn: false,
   status: 'idle',
+  user: {
+    email: '',
+    password: '',
+  },
 };
 
 export const authAsync = createAsyncThunk('auth/login', async (userInfo: AuthProps) => {
@@ -20,7 +25,17 @@ export const authAsync = createAsyncThunk('auth/login', async (userInfo: AuthPro
 export const authSlice = createSlice({
   name: 'auth',
   initialState,
-  reducers: {},
+  reducers: {
+    addUserCreds: (state, action: PayloadAction<AuthProps>) => {
+      state.user = action.payload;
+    },
+    removeUserCreds: (state) => {
+      state.user = {
+        email: '',
+        password: '',
+      };
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(authAsync.pending, (state) => {
@@ -35,6 +50,8 @@ export const authSlice = createSlice({
       });
   },
 });
+
+export const { addUserCreds, removeUserCreds } = authSlice.actions;
 
 export const selectIsLoggedIn = (state: RootState) => state.auth.isLoggenIn;
 

@@ -104,19 +104,16 @@ export default createGlobalStyle`
     font-style: italic;
   }
 
-  * {
+  html, body {
     margin: 0;
     padding: 0;
     outline: 0;
     box-sizing: border-box;
     font-family: NiramitRegular;
-    font-size: 20px;
+    font-size: 18px;
     line-height: 1.3;
+    font-weight: 400;
     background: ${({ theme }) => theme.colors.primary};
-    color: ${({ theme }) => theme.colors.primaryText};
-  }
-
-  #root {
-    margin: 0 auto;
+    color: ${({ theme }) => theme.colors.textPrimary};
   }
 `;
