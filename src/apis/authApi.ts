@@ -1,14 +1,10 @@
-import { post, update } from './service';
-import { API_ENDPOINT } from '../config';
+import userCreds from '../config/auth';
 
-export const onSignUp = async (data: AuthProps) => {
-  return await post(`${API_ENDPOINT}/register`, data);
+const authAPI = (userInfo: AuthProps) => {
+  const isLoggedIn = userCreds.email === userInfo.email && userCreds.password === userInfo.password;
+  return new Promise<{ data: boolean }>((resolve) =>
+    setTimeout(() => resolve({ data: isLoggedIn }), 500),
+  );
 };
 
-export const onSignIn = async (data: AuthProps) => {
-  return await post(`${API_ENDPOINT}/login`, data);
-};
-
-export const updateUser = async (data: UserProps, id: string) => {
-  return await update(`${API_ENDPOINT}/users`, id, data);
-};
+export default authAPI;

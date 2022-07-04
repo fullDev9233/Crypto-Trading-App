@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { API_ENDPOINT } from '../config';
+import API_ENDPOINT from '../config';
 
 export default axios.create({
   baseURL: API_ENDPOINT,
@@ -13,7 +13,11 @@ export default axios.create({
 });
 
 export const setHeaders = (token: string) => {
-  const header = { headers: { Authorization: `Bearer ${token}` } };
+  const header = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
 
   return header;
 };
