@@ -110,8 +110,8 @@ export default createGlobalStyle`
     outline: 0;
     box-sizing: border-box;
     font-family: NiramitRegular;
-    font-size: 36px;
-    line-height: 46.8px;
+    font-size: 20px;
+    line-height: 1.3;
     background: ${({ theme }) => theme.colors.primary};
     color: ${({ theme }) => theme.colors.primaryText};
   }

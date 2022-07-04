@@ -1,13 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import Providers from './providers';
+import Provider from './provider';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Providers>
+    <Provider>
       <App />
-    </Providers>
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root'),
 );
