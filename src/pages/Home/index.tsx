@@ -3,9 +3,8 @@ import styled from 'styled-components';
 import useCryptoMarkets from '../../hooks/useCryptoMarkets';
 import { Table, TableHeader, TableBody, Text, Pagination } from '../../components/Toolkit';
 
-const headers = ['Id', 'Name', 'Icon', 'Price', 'Trade'];
-const column =
-  'minmax(80px, 12%) minmax(120px, 22%) minmax(120px, 22%) minmax(120px, 22%) minmax(120px, 22%)';
+const headers = ['Id', 'Name', 'Icon', 'Price'];
+const column = 'minmax(100px, 23%) minmax(160px, 30%) minmax(100px, 17%) minmax(160px, 30%)';
 
 const Home = () => {
   const [page, setPage] = useState(1);
@@ -26,17 +25,17 @@ const Home = () => {
           <div>
             <Table>
               <TableHeader column={column} headers={headers} />
-              {data.map((element: any, id: number) => (
+              {data.map((element: any, idx: number) => (
                 <TableBody key={element.id} column={column}>
                   <Text font="body3Regular" mx="24px">
-                    {(page - 1) * 10 + id + 1}
+                    {(page - 1) * 10 + idx + 1}
                   </Text>
                   <Text font="captionRegular" mx="24px">
                     {element.name}
                   </Text>
                   <Image src={element.image} alt="Coin Icon" />
                   <Text font="captionRegular" mx="24px">
-                    ${element.current_price.toFixed(2)}
+                    ${element.current_price.toFixed(5)}
                   </Text>
                 </TableBody>
               ))}
