@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { RootState } from './store';
-import authAPI from '../apis/authAPI';
+import authAPI from '../apis/authApi';
 
 export interface AuthState {
   isLoggenIn: boolean;
